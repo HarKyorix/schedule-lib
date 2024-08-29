@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendrier</title>
+  <link rel="stylesheet" href="./schedule/src/css/index.css">
+</head>
+<body>
+ <div id="schedule"></div>
+  <script type="module">
+    import { events, checkboxes } from "./events.js";    
+    
+    const options = {
+      containerId: 'schedule',
+      editable: true,
+      defaultView: 'month',
+      defaultLang: 'fr',
+      events,
+      checkboxes,
+    };
+   
+    import { Schedule } from "./schedule/src/js/index.js";
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const schedule = new Schedule(options);
+
+      schedule.on('add', (eventData) => {
+        schedule.eventManager.addEvent(eventData.date, {...eventData, id: events.length});
+        schedule.updateView();
+      });
+
+      schedule.on('duplicate', ({date, event}) => {
+        schedule.eventManager.duplicateEvent(date, {...event, id: events.length});
+        schedule.updateView();
+      });
+
+      schedule.on('adds', (eventsData) => {
+        schedule.eventManager.addEvents(eventsData.map((el, i)=> ({... el, id: (i+events.length)})));
+        schedule.updateView();
+      });
+
+      schedule.on('update', (eventData) => {
+        schedule.eventManager.updateEvent(eventData.date, eventData);
+        schedule.updateView();
+      });
+
+      schedule.on('updaterecurrency', (eventData) => {
+        schedule.eventManager.updateRecurrencyEvent(eventData);
+        schedule.updateView();
+      });
+
+      schedule.on('move', ({date, id, newDate}) => {
+        schedule.eventManager.moveEvent(date, id, newDate); 
+        schedule.updateView();
+      });      
+      
+      schedule.on('moveupdate', ({date, event}) => {
+        schedule.eventManager.moveUpdateEvent(date, event); 
+        schedule.updateView();
+      });
+
+      schedule.on('moveupdatehour', ({date, id, newDate, hour}) => {
+        schedule.eventManager.moveUpdateHourEvent(date, id, newDate, hour); 
+        schedule.updateView();
+      });
+
+      schedule.on('moves', ({date, newDate}) => {
+        schedule.eventManager.moveEvents(date, newDate); 
+        schedule.updateView();
+      });
+
+      schedule.on('remove', ({date, event}) => {
+        schedule.eventManager.removeEvent(date, event.id);
+        schedule.updateView();
+      });
+
+      schedule.on('removerecurrence', (eventData) => {
+        schedule.eventManager.removeRecurrencyEvent(eventData);
+        schedule.updateView();
+      });
+
+    });
+    
+  </script>
+</body>
+</html>

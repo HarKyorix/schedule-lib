@@ -1,0 +1,61 @@
+#week-view .week-header {
+  display: grid;
+  grid-template-columns: 50px repeat(7, 1fr);
+  background-color: #f8f9fabb;
+  color: #000;
+  text-align: center;
+  padding: 10px 0;
+}
+
+#week-view .week-day-header {
+  padding: 5px 0;
+}
+
+#week-view .week-grid {
+  display: grid;
+  grid-template-columns: 50px repeat(7, 1fr);
+  grid-template-rows: repeat(24, 1fr);
+  gap: 1px;
+}
+
+#week-view .week-hour-row {
+  display: contents;
+}
+
+#week-view .week-hour-cell {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+#week-view .calendar-date {
+  position: relative;
+  border: 1px solid #ddd;
+  border-left: none;
+  min-height: 30px;
+  max-height: 100px;
+  /* overflow-y: scroll; */
+}
+
+#week-view .calendar-date.current-date {
+  border: 1px solid #ff0;
+}
+
+#week-view .calendar-date.selected-date {
+  background-color: #f8f9fabb;
+}
+
+#week-view .event-item {
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  position: absolute;
+  z-index: 10;
+  width: 90%;
+  overflow: hidden;
+}

@@ -1,0 +1,38 @@
+#day-view .hours-grid {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: repeat(24, 1fr);
+  gap: 1px;
+}
+
+#day-view .hour-row {
+  display: contents;
+}
+
+#day-view .hour-label {
+  text-align: center;
+  /* border: 1px solid #ddd; */
+}
+
+#day-view .calendar-date {
+  position: relative;
+  border: 1px solid #ddd;
+  height: auto;
+}
+
+#day-view .event-item {
+  position: absolute;
+  z-index: 10;
+  width: 98%;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  white-space: wrap;
+  font-size: 12px;
+}
+
+#day-view .no-events {
+  text-align: center;
+  padding: 10px;
+}
