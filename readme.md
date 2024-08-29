@@ -1,3 +1,6 @@
+Based on the new folder structure, here is an updated version of the README:
+
+---
 
 # Schedule-Lib
 [Demo](https://harkyorix.github.io/schedule-lib/schedule/exemple/).
